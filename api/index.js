@@ -6,14 +6,7 @@ const { MongoClient } = require('mongodb');
 const path = require('path');
 
 const app = express();
-
-const corsOptions = {
-  origin: '*', // Replace '*' with your client-side domain if you want to restrict access
-  methods: 'GET, POST, PUT, DELETE, OPTIONS',
-  allowedHeaders: 'Content-Type',
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
