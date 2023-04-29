@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 const uri = `mongodb+srv://ayokuda:${process.env.MONGO_PASSWORD}@cluster0.fmquarj.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-const clientSideDirectory = 'client/';
+const clientSideDirectory = 'public/';
 app.use(express.static(path.join(__dirname, clientSideDirectory)));
 
 app.post('/submit-link', async (req, res) => {
