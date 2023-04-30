@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/submit-link",
+      "dest": "index.js"
+    },
+    {
+      "src": "/get-links",
+      "dest": "index.js"
+    },
+    {
+      "src": "/(index.html)?",
+      "dest": "/public/index.html"
+    }
+  ]
+}
+
