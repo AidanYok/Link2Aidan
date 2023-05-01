@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "cors": "^2.8.5",
     "edge-runtime": "^2.1.4",
     "estree-util-build-jsx": "^2.2.2",
     "estree-util-visit": "^1.2.1",
