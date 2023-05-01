@@ -1,59 +1,40 @@
-const express = require('express')
-const app = express()
+const http = require('http')
+const url = require('url')
+const dataRouter = require('./api/data')
 
-const allowCors = fn => async (req, res) => {
+const server = http.createServer(async (req, res) => {
+  const { pathname } = url.parse(req.url)
 
+  // CORS headers
   res.setHeader('Access-Control-Allow-Credentials', true)
-
   res.setHeader('Access-Control-Allow-Origin', '*')
-
-  // another common pattern
-
-  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-
   res.setHeader(
-
     'Access-Control-Allow-Headers',
-
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-
   )
 
   if (req.method === 'OPTIONS') {
-
-    res.status(200).end()
-
+    res.writeHead(200)
+    res.end()
     return
-
   }
 
-  return await fn(req, res)
+  if (pathname === '/api/data') {
+    return dataRouter(req, res)
+  }
 
-}
-
-
-const handler = (req, res) => {
-
-  const d = new Date()
-
-  res.end(d.toString())
-
-}
-
-
-module.exports = allowCors(handler)
-
-const dataRouter = require('./api/data')
-
-app.use('/api/data', dataRouter)
-
-app.get('/', (req, res) => {
-  res.send('Hello, World!')
+  if (pathname === '/') {
+    res.writeHead(200, { 'Content-Type': 'text/html' })
+    res.end('Hello, World!')
+  } else {
+    res.writeHead(404)
+    res.end('Not Found')
+  }
 })
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log('Server is running...')
+const port = process.env.PORT || 3000
+server.listen(port, () => {
+  console.log(`Server is running on port ${port}`)
 })
 

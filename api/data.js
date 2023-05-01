@@ -1,13 +1,9 @@
-const express = require('express')
-const router = express.Router()
+const data = {
+  message: 'This data is from the server',
+}
 
-router.get('/', (req, res) => {
-  const data = {
-    message: 'This data is from the server'
-  }
-
-  res.json(data)
-})
-
-module.exports = router
+module.exports = (req, res) => {
+  res.setHeader('Content-Type', 'application/json')
+  res.end(JSON.stringify(data))
+}
 
