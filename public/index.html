@@ -1,13 +1,49 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>My Website</title>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-  <body>
-    <h1>Hello, World!</h1>
-    <p>Welcome to my website!</p>
-  </body>
+    <title>Send To Aidan</title>
+</head>
+<body>
+    <h1>Submit a Link</h1>
+    <form id="link-form">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="link">Link:</label>
+        <input type="url" id="link" name="link" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+	const API_BASE_URL = (function() {
+		const appEnv = '<%= process.env.APP_ENV %>';
+		return appEnv === 'development' ? 'http://localhost:3000' : 'https://aidan-yok-github-l8fj2yf24-aidanyokuda.vercel.app';
+	})();
+
+        document.getElementById('link-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const link = document.getElementById('link').value;
+
+		<!--const response = await fetch(`${API_BASE_URL}/submit-link`,NOT WORKING RN {-->
+		const response = await fetch('https://aidan-yok-github-l8fj2yf24-aidanyokuda.vercel.app', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, link })
+            });
+
+            if (response.ok) {
+                alert('Link submitted successfully!');
+            } else {
+                alert('Error submitting the link. Please try again.');
+            }
+        });
+    </script>
+</body>
 </html>
 
