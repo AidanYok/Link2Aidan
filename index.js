@@ -46,7 +46,7 @@ const handler = (req, res) => {
 }
 
 
-module.exports = allowCors(handler)
+module.exports.handler = allowCors(handler)
 
 const server = http.createServer(async (req, res) => {
   const { pathname } = url.parse(req.url);
