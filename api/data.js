@@ -4,7 +4,7 @@ const data = {
   message: 'This data is from the server',
 }
 
-const dataHandler = (req, res) => {
+const dataHandler = async (req, res) => {
   res.setHeader('Content-Type', 'application/json')
   res.end(JSON.stringify(data))
 }
