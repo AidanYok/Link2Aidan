@@ -35,7 +35,7 @@ const allowCors = fn => async (req, res) => {
   return await fn(req, res)
 
 }
-
+module.exports.allowCors = allowCors
 
 const handler = (req, res) => {
 
@@ -71,8 +71,6 @@ const server = http.createServer(async (req, res) => {
     res.end('Not Found');
   }
 });
-
-module.exports.server = allowCors(server)
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
