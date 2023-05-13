@@ -11,7 +11,7 @@ const submitLinks = async (req, res) => {
 
   try {
     await client.connect();
-    const collection = client.db('your_database').collection('links');
+    const collection = client.db('Cluster0').collection('links');
     await collection.insertOne({ name, link });
     res.status(201).json({ message: 'Link submitted successfully!' });
   } catch (err) {
