@@ -1,4 +1,4 @@
-const allowCors = require('./../index'); // the allowCors function is exported from index.js
+const { allowCors } = require('./../index'); // import allowCors using destructuring
 
 const data = {
   message: 'This data is from the server',
