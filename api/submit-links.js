@@ -6,7 +6,7 @@ const process = require('process');
 const uri = `mongodb+srv://ayokuda:${process.env.MONGO_PASSWORD}@cluster0.fmquarj.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-const submit-links = (req, res) => {
+const submitLinks = (req, res) => {
   const { name, link } = req.body;
 
   try {
@@ -21,5 +21,5 @@ const submit-links = (req, res) => {
   }
 }
 
-module.exports = allowCors(submit-links)
+module.exports = allowCors(submitLinks)
 
