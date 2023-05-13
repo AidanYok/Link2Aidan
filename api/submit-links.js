@@ -6,7 +6,7 @@ const process = require('process');
 const uri = `mongodb+srv://ayokuda:${process.env.MONGO_PASSWORD}@cluster0.fmquarj.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-const submitLinks = (req, res) => {
+const submitLinks = async (req, res) => {
   const { name, link } = req.body;
 
   try {
