@@ -72,7 +72,7 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-module.exports = allowCors(server)
+module.exports.server = allowCors(server)
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
